@@ -7,7 +7,7 @@ import rospy
 from std_msgs.msg import String
 from nav_msgs.msg import Odometry
 
-import room
+import room_util
 
 x_ant = 0
 y_ant = 0
@@ -22,7 +22,7 @@ def callback(data):
 	# show coordinates only when they change
 	if x != x_ant or y != y_ant:
 		print " x=%.1f y=%.1f" % (x,y)
-		print room.IsHall(room.GetNumber(x,y))
+		print room_util.IsHall(room_util.GetNumber(x,y))
 	x_ant = x
 	y_ant = y
 
