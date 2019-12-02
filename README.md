@@ -5,3 +5,9 @@ IA for ROS é um trabalho desenvolvido para a Unidade Curricular Inteligência A
 
 Substitui o diretório /home/viki/catkin_ws/src/ia/src pelo presente no repositório.
 
+
+### Dependências
+
+```python
+pip install -r requirements.txt
+```

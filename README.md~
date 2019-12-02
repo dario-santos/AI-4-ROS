@@ -3,5 +3,5 @@ IA for ROS é um trabalho desenvolvido para a Unidade Curricular Inteligência A
 
 ## How to install
 
-Substitui o diretório /home/viki/catkin_ws/src/ia pelo presente no repositório.
+Substitui o diretório /home/viki/catkin_ws/src/ia/src pelo presente no repositório.
 
