@@ -30,6 +30,9 @@ def GetNumber(x, y):
     else:
         return -1
 
+def GetNomenclature(x, y):
+    return 'S' + str(GetNumber(x, y))
+
 def IsHall(roomNumber):
     return roomNumber <= 4 and roomNumber >= 1
 

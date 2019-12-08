@@ -3,10 +3,10 @@ IA for ROS é um trabalho desenvolvido para a Unidade Curricular Inteligência A
 
 ## How to install
 
-Substitui o diretório /home/viki/catkin_ws/src/ia/src pelo presente no repositório.
+Substituir o diretório /home/viki/catkin_ws/src/ia/src pelo /src presente neste repositório.
 
 
-### Dependências
+## Dependências
 
 ```python
 pip install -r requirements.txt

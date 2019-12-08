@@ -1,14 +1,15 @@
-import Object
+import RoomObject
 
 class Room:
-    def __init__(self, objects : [Object]):
+    
+    def __init__(self, objects):
         self.objects = objects
 
     # Adicionar objeto
     def AddObject(self, name):
         info = name.split("_", 1)
         # Categoria, Nome
-        obj = Object(info[0], info[1])
+        obj = RoomObject.RoomObject(info[0], info[1])
 
         self.objects.append(obj)
 
@@ -16,7 +17,7 @@ class Room:
     # Remover objeto
     def RemoveObject(self, name):
         info = name.split("_", 1)
-        obj = Object(info[0], info[1])
+        obj = RoomObject.RoomObject(info[0], info[1])
 
         self.objects.remove(obj)
 
@@ -28,7 +29,6 @@ class Room:
         return None
 
         
-
     # Buscar Objetos de uma categoria
     def GetObjectsByCategory(self, category):
         objects = []
