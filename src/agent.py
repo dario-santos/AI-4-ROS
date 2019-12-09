@@ -9,6 +9,7 @@ from nav_msgs.msg import Odometry
 import graph_util
 import room_util
 import Room
+import RoomObject
 
 room_ant = 'Room 1'
 x_ant = 0
@@ -48,19 +49,30 @@ def callback1(data):
 	global obj_ant, rooms, room_ant
 	obj = data.data
 
-	current_room = rooms[room_ant]
-	current_room.AddObject(obj)
-	print current_room
-	print rooms[room_ant]
-
 	if obj != obj_ant and data.data != "":
+		current_room = rooms[room_ant]
+
+		# Tratar dos dados
+		objects= data.data.split(',')
+		for _,o in enumerate(objects):
+			current_room.AddObject(o)
+			print "object is %s" % o
+		
+		rooms[room_ant] = current_room
 		print "object is %s" % data.data
+		
 	obj_ant = obj
 		
 # ---------------------------------------------------------------
 # questions_keyboard callback
 def callback2(data):
-	global G, x_ant, y_ant 
+	global G, x_ant, y_ant, rooms, room_ant
+
+	if data.data == '1':
+		if rooms[room_ant].IsOccupied():
+			print "This room is occupied"
+		else: 
+			print "This room is not occupied"
 
 	if data.data == '5':
 		print graph_util.closestRoom(G, room_util.GetNomenclature(x_ant, y_ant))
@@ -84,20 +96,20 @@ def agent():
 	graph_util.addNode(G, room_ant)
 
 	# Create dictionary
-	rooms = {'Room 1': Room.Room(None),
-			 'Room 2': Room.Room(None),
-			 'Room 3': Room.Room(None),
-			 'Room 4': Room.Room(None),
-			 'Room 5': Room.Room(None),
-			 'Room 6': Room.Room(None),
-			 'Room 7': Room.Room(None),
-			 'Room 8': Room.Room(None),
-			 'Room 9': Room.Room(None),
-			 'Room 10': Room.Room(None),
-			 'Room 11': Room.Room(None),
-			 'Room 12': Room.Room(None),
-			 'Room 13': Room.Room(None),
-			 'Room 14': Room.Room(None)
+	rooms = {'Room 1': Room.Room([]),
+			 'Room 2': Room.Room([]),
+			 'Room 3': Room.Room([]),
+			 'Room 4': Room.Room([]),
+			 'Room 5': Room.Room([]),
+			 'Room 6': Room.Room([]),
+			 'Room 7': Room.Room([]),
+			 'Room 8': Room.Room([]),
+			 'Room 9': Room.Room([]),
+			 'Room 10': Room.Room([]),
+			 'Room 11': Room.Room([]),
+			 'Room 12': Room.Room([]),
+			 'Room 13': Room.Room([]),
+			 'Room 14': Room.Room([])
 			 }
 
 	rospy.spin()

@@ -9,10 +9,10 @@ class Room:
     def AddObject(self, name):
         info = name.split("_", 1)
         if len(info) != 2: 
-            return 
+            return
+
         # Categoria, Nome
         obj = RoomObject.RoomObject(info[0], info[1])
-
         self.objects.append(obj)
 
 
@@ -26,7 +26,7 @@ class Room:
     # buscar objeto pelo nome
     def GetObjectByName(self, name):
         for _, o in enumerate(self.objects):
-            if o.getName() is name:
+            if o.GetName() is name:
                 return o
         return None
 
@@ -35,8 +35,16 @@ class Room:
     def GetObjectsByCategory(self, category):
         objects = []
         for _, o in enumerate(self.objects):
-            if o.getCategory() is category:
+            if o.GetCategory() is category:
                 objects.append(o)
 
         return objects
+
+    def IsOccupied(self):
+        for _, o in enumerate(self.objects): 
+            print o.GetCategory()
+            if o.GetCategory() == RoomObject.Category.person:
+                return True
+        return False
+
 

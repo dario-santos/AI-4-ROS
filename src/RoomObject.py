@@ -1,20 +1,35 @@
 
 class RoomObject:
 
-    def __init__(self, name, category):
+    def __init__(self, category, name):
         self.name = name
+        if category == 'person':
+            self.category = Category.person
+        elif category == 'door':
+            self.category = Category.door
+        elif category == 'bed':
+            self.category = Category.bed
+        elif category == 'book':
+            self.category = Category.book
+        elif category == 'chair':
+            self.category = Category.chair
+        elif category == 'computer':
+            self.category = Category.computer
+        elif category == 'table':
+            self.category = Category.table
+        else:
+            self.category = Category.mistery
+
+    def SetName(self, name):
+        self.name = name
+
+    def SetCategory(self, category):
         self.category = category
 
-    def setName(self, name):
-        self.name = name
-
-    def setCategory(self, category):
-        self.category = category
-
-    def getName(self):
+    def GetName(self):
         return self.name
 
-    def getCategory(self):
+    def GetCategory(self):
         return self.category
 
 class Category:
