@@ -8,6 +8,8 @@ class Room:
     # Adicionar objeto
     def AddObject(self, name):
         info = name.split("_", 1)
+        if len(info) != 2: 
+            return 
         # Categoria, Nome
         obj = RoomObject.RoomObject(info[0], info[1])
 

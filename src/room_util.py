@@ -1,3 +1,5 @@
+room_nomenclature_prefix = 'Room '
+
 def GetNumber(x, y):
     if x >= -0.7 and x <= 18.7 and y <= 0.2 and y >= -1.7:
         return 1
@@ -31,7 +33,7 @@ def GetNumber(x, y):
         return -1
 
 def GetNomenclature(x, y):
-    return 'S' + str(GetNumber(x, y))
+    return room_nomenclature_prefix + str(GetNumber(x, y))
 
 def IsHall(roomNumber):
     return roomNumber <= 4 and roomNumber >= 1
