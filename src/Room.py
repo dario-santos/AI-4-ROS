@@ -3,14 +3,21 @@ import RoomObject
 class Room:
     
     def __init__(self, objects):
+        self.isSuit = False
         self.objects = objects
 
+    def SetIsSuit(self, value):
+        self.isSuit = value
+    
+    def GetIsSuit(self):
+        return self.isSuit
+    
     # Adicionar objeto
     def AddObject(self, name):
         info = name.split("_", 1)
         if len(info) != 2: 
             return
-
+             
         # Categoria, Nome
         obj = RoomObject.RoomObject(info[0], info[1])
         self.objects.append(obj)

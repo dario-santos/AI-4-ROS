@@ -22,19 +22,27 @@ rooms = None
 # ---------------------------------------------------------------
 # odometry callback
 def callback(data):
-	global x_ant, y_ant, room_ant, G
+	global x_ant, y_ant, room_ant, G, rooms
 	
 	x=data.pose.pose.position.x
 	y=data.pose.pose.position.y
 
 	if room_ant != 'Room -1' and room_util.GetNomenclature(x ,y) != 'Room -1':
-		if room_ant != room_util.GetNomenclature(x ,y):
+		room_current = room_util.GetNomenclature(x ,y)
+		if room_ant != room_current:
+			# Localização
 			graph_util.addNode(G, room_ant)
-			graph_util.addNode(G, room_util.GetNomenclature(x, y))
-			graph_util.addEdge(G, room_util.GetNomenclature(x, y), room_ant)
-			room_ant = room_util.GetNomenclature(x, y)
+			graph_util.addNode(G, room_current)
+			graph_util.addEdge(G, room_current, room_ant)
 
+			# Memória
+			if not room_util.IsHall(roomName=room_ant) and not room_util.IsHall(roomName=room_current):
+				rooms[room_ant].SetIsSuit(True)
+				rooms[room_current].SetIsSuit(True)
+			
+			room_ant = room_current
 
+			
 	# show coordinates only when they change
 	if x != x_ant or y != y_ant:
 		print " x=%.1f y=%.1f" % (x,y)
@@ -66,13 +74,23 @@ def callback1(data):
 # ---------------------------------------------------------------
 # questions_keyboard callback
 def callback2(data):
-	global G, x_ant, y_ant, rooms, room_ant
+	global G, x_ant, y_ant, rooms
 
 	if data.data == '1':
-		if rooms[room_ant].IsOccupied():
-			print "This room is occupied"
-		else: 
-			print "This room is not occupied"
+		cnt = 0
+		for _,room in enumerate(rooms.values()): 
+			if room.IsOccupied():
+				cnt += 1
+		print "There are %d rooms occupied" % cnt
+	
+	if data.data == '2':
+		cnt = 0
+		for _,room in enumerate(rooms.values()): 
+			if room.GetIsSuit():
+				cnt += 1
+		cnt /= 2
+		print "There are %d suits" % cnt
+	
 
 	if data.data == '5':
 		print graph_util.closestRoom(G, room_util.GetNomenclature(x_ant, y_ant))

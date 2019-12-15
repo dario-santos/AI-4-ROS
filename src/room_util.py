@@ -35,6 +35,11 @@ def GetNumber(x, y):
 def GetNomenclature(x, y):
     return room_nomenclature_prefix + str(GetNumber(x, y))
 
-def IsHall(roomNumber):
-    return roomNumber <= 4 and roomNumber >= 1
+def IsHall(roomNumber=-1, roomName=''):
+    if roomName != '':
+        return roomName == 'Room 1' or roomName == 'Room 2' or roomName == 'Room 3' or roomName == 'Room 4' 
+    if roomNumber != -1:
+        return roomNumber <= 4 and roomNumber >= 1
+
+    raise Exception("Invalid params")
 
