@@ -11,5 +11,14 @@ Substituir o diretório /home/viki/catkin_ws/src/ia/src pelo /src presente neste
 ## Dependências
 
 ```python
-pip install -r requirements.txt
+> pip install -r requirements.txt
+```
+
+## Testes
+
+Existe um conjunto de testes que podem ser consultados no diretório Tests. 
+Pode executálos com o comando 
+
+```python
+> pytest
 ```
