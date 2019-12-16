@@ -36,7 +36,6 @@ class Room:
             if o.GetName() is name:
                 return o
         return None
-
         
     # Buscar Objetos de uma categoria
     def GetObjectsByCategory(self, category):
@@ -44,7 +43,6 @@ class Room:
         for _, o in enumerate(self.objects):
             if o.GetCategory() is category:
                 objects.append(o)
-
         return objects
 
     def IsOccupied(self):
@@ -53,5 +51,21 @@ class Room:
             if o.GetCategory() == RoomObject.Category.person:
                 return True
         return False
+
+    def GetRoomType(self):
+        nOfBeds = len(self.GetObjectsByCategory(RoomObject.Category.bed))
+        nOfTables = len(self.GetObjectsByCategory(RoomObject.Category.table))
+        nOfChairs = len(self.GetObjectsByCategory(RoomObject.Category.chair))
+
+        if nOfBeds == 1:
+            return "single room"
+        elif nOfBeds > 1 and self.isSuit:
+            return "suite"
+        elif nOfBeds == 2:
+            return "double room"
+        elif nOfTables == 1 and nOfChairs > 2:
+            return "meeting room"
+        else:
+            return "generic room"
 
 
