@@ -17,9 +17,14 @@ class Room:
         info = name.split("_", 1)
         if len(info) != 2: 
             return
-             
+
+        # Verifica se o objeto ja foi adicionado
+        for _, o in enumerate(self.objects):
+            if o.GetName() == info[1]:
+                return
+            
         # Categoria, Nome
-        obj = RoomObject.RoomObject(info[0], info[1])
+        obj = RoomObject.RoomObject(RoomObject.Category.GetCategory(info[0]), info[1])
         self.objects.append(obj)
 
 
@@ -67,5 +72,3 @@ class Room:
             return "meeting room"
         else:
             return "generic room"
-
-

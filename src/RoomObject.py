@@ -3,22 +3,7 @@ class RoomObject:
 
     def __init__(self, category, name):
         self.name = name
-        if category == 'person':
-            self.category = Category.person
-        elif category == 'door':
-            self.category = Category.door
-        elif category == 'bed':
-            self.category = Category.bed
-        elif category == 'book':
-            self.category = Category.book
-        elif category == 'chair':
-            self.category = Category.chair
-        elif category == 'computer':
-            self.category = Category.computer
-        elif category == 'table':
-            self.category = Category.table
-        else:
-            self.category = Category.mistery
+        self.category = category
 
     def SetName(self, name):
         self.name = name
@@ -41,3 +26,22 @@ class Category:
     person   = 5
     table    = 6
     mistery  = 7
+    
+    @staticmethod
+    def GetCategory(category_name):
+        if category_name == 'person':
+            return Category.person
+        elif category_name == 'door':
+            return Category.door
+        elif category_name == 'bed':
+            return Category.bed
+        elif category_name == 'book':
+            return Category.book
+        elif category_name == 'chair':
+            return Category.chair
+        elif category_name == 'computer':
+            return Category.computer
+        elif category_name == 'table':
+            return Category.table
+        else:
+            return Category.mistery
