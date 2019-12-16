@@ -52,7 +52,6 @@ class Room:
 
     def IsOccupied(self):
         for _, o in enumerate(self.objects): 
-            print o.GetCategory()
             if o.GetCategory() == RoomObject.Category.person:
                 return True
         return False
