@@ -1,7 +1,7 @@
 from src import RoomObject as rObject
 import pytest
 import sys
-sys.path.insert(1, 'C:\\Users\\dario\\OneDrive\\Documentos\\Github\\IA-4-ROS\\')
+sys.path.insert(1, '../')
 
 
 def test_objectCategories():
