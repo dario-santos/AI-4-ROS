@@ -81,3 +81,33 @@ def test_addEdgeInvalidNodes():
     g.addNode(G, 'Room -2')
     g.addEdge(G, 'Room -1', 'Room -2')
     assert len(list(G.edges)) == 0
+
+
+def test_shortestPath():
+    G = g.createGraph()
+    g.addNode(G, 'Room 1')
+    g.addNode(G, 'Room 2')
+    g.addNode(G, 'Room 3')
+    g.addNode(G, 'Room 4')
+    g.addEdge(G, 'Room 1', 'Room 2')
+    g.addEdge(G, 'Room 1', 'Room 3')
+    g.addEdge(G, 'Room 2', 'Room 4')
+    g.addEdge(G, 'Room 3', 'Room 2')
+    assert g.shortestPath(G, 'Room 4') == "Room 4 -> Room 2 -> Room 1"
+
+def test_shortestPathSameRoom():
+    G = g.createGraph()
+    g.addNode(G, 'Room 1')
+    assert g.shortestPath(G, 'Room 1') == "Room 1"
+
+def test_shortestPathNoConnection():
+    G = g.createGraph()
+    g.addNode(G, 'Room 1')
+    g.addNode(G, 'Room 2')
+    assert g.shortestPath(G, 'Room 2') == "There is no possible connection to Room 1 from Room 2"
+
+def test_shortestPathNoConnection():
+    G = g.createGraph()
+    g.addNode(G, 'Room 1')
+    g.addNode(G, 'Room 2')
+    assert g.shortestPath(G, 'Room 2') == "There is no possible connection to Room 1 from Room 2"

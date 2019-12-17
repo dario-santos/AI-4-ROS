@@ -32,8 +32,11 @@ def addEdge(G, node_1, node_2):
 
 def shortestPath(G, currentPos, goalPos='Room 1'):
 	formatedPath = ''
-	path = nx.astar_path(G, currentPos, goalPos, weight='weight')
-	
+	try: 
+		path = nx.astar_path(G, currentPos, goalPos, weight='weight')
+	except:
+		return "There is no possible connection to " + goalPos + " from " + currentPos
+
 	if len(path) - 1 == 0:
 		formatedPath = currentPos
 	else: 
