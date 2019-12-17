@@ -1,4 +1,4 @@
-import RoomObject
+from src import RoomObject
 
 class Room:
     
@@ -12,13 +12,11 @@ class Room:
     def GetIsSuit(self):
         return self.isSuit
     
-    # Adicionar objeto
     def AddObject(self, name):
         info = name.split("_", 1)
         if len(info) != 2: 
             return
 
-        # Verifica se o objeto ja foi adicionado
         for _, o in enumerate(self.objects):
             if o.GetName() == info[1]:
                 return
@@ -27,22 +25,18 @@ class Room:
         obj = RoomObject.RoomObject(RoomObject.Category.GetCategory(info[0]), info[1])
         self.objects.append(obj)
 
-
-    # Remover objeto
     def RemoveObject(self, name):
         info = name.split("_", 1)
         obj = RoomObject.RoomObject(info[0], info[1])
 
         self.objects.remove(obj)
 
-    # buscar objeto pelo nome
     def GetObjectByName(self, name):
         for _, o in enumerate(self.objects):
             if o.GetName() is name:
                 return o
         return None
         
-    # Buscar Objetos de uma categoria
     def GetObjectsByCategory(self, category):
         objects = []
         for _, o in enumerate(self.objects):

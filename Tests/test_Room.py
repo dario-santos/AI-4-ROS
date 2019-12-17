@@ -1,6 +1,7 @@
 import pytest
 import sys
-sys.path.insert(1, '../')
+
+sys.path.insert(1, 'C:\\Users\\dario\\OneDrive\\Documentos\\Github\\IA-4-ROS\\')
 
 from src import RoomObject as rObject
 from src import Room as r
@@ -17,6 +18,16 @@ def test_duplicateItems():
     r1.AddObject("person_Maria")
     r1.AddObject("person_Maria")
     assert len(r1.objects) == 1
+
+def test_roomIsOccupied():
+    r1 = r.Room([])
+    r1.AddObject("person_Maria")
+    assert r1.IsOccupied()
+
+def test_roomIsNotOccupied():
+    r1 = r.Room([])
+    r1.AddObject("bed_bed1")
+    assert not r1.IsOccupied()
 
 def test_roomIsSingle():
     r1 = r.Room([])

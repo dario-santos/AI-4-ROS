@@ -1,23 +1,24 @@
 import networkx as nx
 import matplotlib.pyplot as plt
-import room_util
+from src import room_util
 
 def createGraph():
-    G = nx.Graph()
-    return G
+	G = nx.Graph()
+	return G
 
 
 def addNode(G, node):
-    if G.has_node(node):
-        return
+	if G.has_node(node):
+		return
 	if node == room_util.room_nomenclature_prefix + '-1':
 		return
 
-    G.add_node(node)
-    return
+	G.add_node(node)
 
 
 def addEdge(G, node_1, node_2):
+	if (not G.has_node(node_1)) or (not G.has_node(node_2)):
+		return
 	if G.has_edge(node_1, node_2):
 		return
 	if node_1 == node_2:
@@ -41,7 +42,7 @@ def shortestPath(G, currentPos, goalPos='Room 1'):
 		if i == 0:
 			continue
 		if i == len(path) - 1:
-		 	formatedPath += e
+			formatedPath += e
 			continue
 
 		formatedPath += e + " -> " 
@@ -63,6 +64,6 @@ def closestRoom(G, current_room):
 	return output
 
 def showGraph(G):
-    nx.draw(G, with_labels='true')
-    plt.show()
-    return
+	nx.draw(G, with_labels='true')
+	plt.show()
+	return
