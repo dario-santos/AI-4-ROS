@@ -1,5 +1,6 @@
 import networkx as nx
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
+
 from src import room_util
 
 def createGraph():
@@ -63,7 +64,7 @@ def closestRoom(G, current_room):
 		output += node + ", "   
 	return output
 
-def showGraph(G):
-	nx.draw(G, with_labels='true')
-	plt.show()
-	return
+#def showGraph(G):
+#	nx.draw(G, with_labels='true')
+#	plt.show()
+#	return
