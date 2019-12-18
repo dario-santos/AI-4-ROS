@@ -82,7 +82,6 @@ def callback2(data):
 			if room.IsOccupied():
 				cnt += 1
 		print "There are %d rooms occupied" % cnt
-	
 	if data.data == '2':
 		cnt = 0
 		for _,room in enumerate(rooms.values()): 
@@ -90,45 +89,11 @@ def callback2(data):
 				cnt += 1
 		cnt /= 2
 		print "There are %d suits" % cnt
-	
 	if data.data == '3':
-		personsOnHalls = 0
-		personsOnRooms = 0
-		nOfHalls = 0.
-		nOfRooms = 0.
-		probOfHalls = 0.0
-		probOfRooms = 0.0
-
-		for i in G:
-			if len(rooms[i].GetObjectsByCategory(RoomObject.Category.person)) > 0:
-				if room_util.isHall(roomName=i):
-					personsOnHalls+=1
-					nOfHalls+=1
-				else:
-					personsOnRooms+=1
-					nOfRooms+=1
-			else:
-				if room_util.isHall(roomName=i):
-					nOfHalls+=1
-				else:
-					nOfRooms+=1
-		print "%d" % nOfHalls
-		if nOfHalls != 0:
-			probOfHalls = (personsOnHalls / nOfHalls) * 100
-		if nOfRooms != 0:
-			probOfRooms = (personsOnRooms / nOfRooms) * 100
-
-		if probOfHalls == probOfRooms:
-			print "The probability of finding a person is the same (%.0f%%)" % probOfHalls
-		elif (probOfHalls > probOfRooms):
-			print "There\'s a bigger probability of finding a person in a hall (%.0f%%)" % probOfHalls
-		else:
-			print "There\'s a bigger probability %.0f%% of finding a person in a room (%.0f%%)" % probOfRooms
-		
-		# Correr as salas visitadas e ver se tem 	
+		print room_util.getProbabilityOfBeingOccupied(G, rooms)
 
 	if data.data == '5':
-		print graph_util.closestRoom(G, room_util.getNomenclature(x_ant, y_ant))
+		print graph_util.closestRoom(G, rooms, room_util.getNomenclature(x_ant, y_ant))
 	if data.data == '6':
 		print graph_util.shortestPath(G, room_util.getNomenclature(x_ant, y_ant))
 

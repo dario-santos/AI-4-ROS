@@ -1,4 +1,6 @@
-from src import RoomObject
+import sys
+sys.path.insert(1, './')
+import RoomObject
 
 class Room:
     
@@ -56,12 +58,35 @@ class Room:
         nOfChairs = len(self.GetObjectsByCategory(RoomObject.Category.chair))
 
         if nOfBeds == 1:
-            return "single room"
+            return RoomType.single
         elif nOfBeds > 1 and self.isSuit:
-            return "suite"
+            return RoomType.suite
         elif nOfBeds == 2:
-            return "double room"
+            return RoomType.double
         elif nOfTables == 1 and nOfChairs > 2:
-            return "meeting room"
+            return RoomType.meeting
         else:
-            return "generic room"
+            return RoomType.generic
+
+class RoomType:
+    none   = 0
+    single   = 1
+    double   = 2
+    suite    = 3
+    meeting  = 4
+    generic  = 5
+
+    @staticmethod
+    def GetType(type_name):
+        if type_name == 'single':
+            return Room.single
+        elif type_name == 'double':
+            return RoomType.double
+        elif type_name == 'suite':
+            return RoomType.suite
+        elif type_name == 'meeting':
+            return RoomType.meeting
+        elif type_name == 'generic':
+            return RoomType.generic
+        else:
+            return 0

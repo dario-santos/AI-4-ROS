@@ -32,20 +32,20 @@ def test_roomIsNotOccupied():
 def test_roomIsSingle():
     r1 = r.Room([])
     r1.AddObject("bed_bed1")
-    assert r1.GetRoomType() == 'single room'
+    assert r1.GetRoomType() == r.RoomType.single
 
 def test_roomIsDouble():
     r1 = r.Room([])
     r1.AddObject("bed_bed1")
     r1.AddObject("bed_bed2")
-    assert r1.GetRoomType() == 'double room'
+    assert r1.GetRoomType() == r.RoomType.double
 
 def test_roomIsSuite():
     r1 = r.Room([])
     r1.SetIsSuit(True)
     r1.AddObject("bed_bed1")
     r1.AddObject("bed_bed2")
-    assert r1.GetRoomType() == 'suite'
+    assert r1.GetRoomType() == r.RoomType.suite
 
 def test_roomIsMeeting():
     r1 = r.Room([])
@@ -53,7 +53,7 @@ def test_roomIsMeeting():
     r1.AddObject("chair_chair1")
     r1.AddObject("chair_chair2")
     r1.AddObject("chair_chair3")
-    assert r1.GetRoomType() == 'meeting room'
+    assert r1.GetRoomType() == r.RoomType.meeting
 
 def test_roomIsGeneric():
     r1 = r.Room([])
@@ -61,4 +61,4 @@ def test_roomIsGeneric():
     r1.AddObject("chair_chair1")
     r1.AddObject("chair_chair2")
     r1.AddObject("book_book2")
-    assert r1.GetRoomType() == 'generic room'
+    assert r1.GetRoomType() == r.RoomType.generic

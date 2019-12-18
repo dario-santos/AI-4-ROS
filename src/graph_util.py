@@ -1,12 +1,14 @@
 import networkx as nx
-#import matplotlib.pyplot as plt
+import sys
 
-from src import room_util
+sys.path.insert(1, './')
+import room_util
+import Room
+
 
 def createGraph():
 	G = nx.Graph()
 	return G
-
 
 def addNode(G, node):
 	if G.has_node(node):
@@ -15,7 +17,6 @@ def addNode(G, node):
 		return
 
 	G.add_node(node)
-
 
 def addEdge(G, node_1, node_2):
 	if (not G.has_node(node_1)) or (not G.has_node(node_2)):
@@ -29,13 +30,17 @@ def addEdge(G, node_1, node_2):
 	
 	G.add_edge(node_1, node_2, weigth=1)
 
-
 def shortestPath(G, currentPos, goalPos='Room 1'):
 	formatedPath = ''
+	
+	if currentPos == 'Room -1':
+	 return "Please move a little, you are between two rooms."
+
 	try: 
 		path = nx.astar_path(G, currentPos, goalPos, weight='weight')
 	except:
 		return "There is no possible connection to " + goalPos + " from " + currentPos
+	
 
 	if len(path) - 1 == 0:
 		formatedPath = currentPos
@@ -53,21 +58,23 @@ def shortestPath(G, currentPos, goalPos='Room 1'):
 
 	return	formatedPath
 
-def closestRoom(G, current_room):
-	neighbours = list(G.neighbors(current_room))
-	output = "Closest rooms: "
-	if len(neighbours) == 0:
-		output += "None"
-	
-	for i,node in enumerate(neighbours):
-		if i == len(neighbours) - 1:
-			output += node
+def closestRoom(G, rooms, current_room):
+	if current_room == 'Room -1':
+	 return "Please move a little, you are between two rooms."
+
+	dic = nx.algorithms.shortest_path(G, current_room, weight='weight')
+	closestRoom = None
+	smallestPath = 999
+
+	for i,k in enumerate(dic.keys()):
+		if k == current_room:
 			continue
 
-		output += node + ", "   
-	return output
+		if (len(dic[k]) < smallestPath) and rooms[k].GetRoomType() == Room.RoomType.single:
+			smallestPath = len(dic[k])
+			closestRoom = k
 
-#def showGraph(G):
-#	nx.draw(G, with_labels='true')
-#	plt.show()
-#	return
+	if closestRoom == None:
+		return "No known single rooms"
+
+	return "You have %s" % closestRoom

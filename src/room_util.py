@@ -1,3 +1,8 @@
+import sys
+sys.path.insert(1, './')
+import RoomObject
+import Room
+
 room_nomenclature_prefix = 'Room '
 
 def getNumber(x, y):
@@ -43,3 +48,35 @@ def isHall(roomNumber=-1, roomName=''):
 
     raise Exception("Invalid params")
 
+def getProbabilityOfBeingOccupied(G,rooms):
+    personsOnHalls = 0
+    personsOnRooms = 0
+    nOfHalls = 0.0
+    nOfRooms = 0.0
+    probOfHalls = 0.0
+    probOfRooms = 0.0
+    for i in G:
+        if len(rooms[i].GetObjectsByCategory(RoomObject.Category.person)) > 0:
+            if isHall(roomName=i):
+				personsOnHalls+=1
+				nOfHalls+=1
+            else:
+				personsOnRooms+=1
+				nOfRooms+=1
+        else:
+            if isHall(roomName=i):
+                nOfHalls+=1
+            else:
+                nOfRooms+=1
+
+    if nOfHalls != 0:
+		probOfHalls = (personsOnHalls / nOfHalls) * 100
+    if nOfRooms != 0:
+		probOfRooms = (personsOnRooms / nOfRooms) * 100
+
+    if probOfHalls == probOfRooms:
+		return "The probability of finding a person is the same (%.0f%%)" % probOfHalls
+    elif probOfHalls > probOfRooms:
+		return "There\'s a bigger probability of finding a person in a hall (%.0f%%)" % probOfHalls
+		
+    return "There\'s a bigger probability of finding a person in a room (%.0f%%)" % probOfRooms

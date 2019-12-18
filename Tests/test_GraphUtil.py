@@ -111,3 +111,10 @@ def test_shortestPathNoConnection():
     g.addNode(G, 'Room 1')
     g.addNode(G, 'Room 2')
     assert g.shortestPath(G, 'Room 2') == "There is no possible connection to Room 1 from Room 2"
+
+def test_shortestPathInvalidRoomOrigin():
+    G = g.createGraph()
+    g.addNode(G, 'Room 1')
+    g.addNode(G, 'Room -1')
+    g.addEdge(G, 'Room 1', 'Room -1')
+    assert g.shortestPath(G, 'Room -1') == "Please move a little, you are between two rooms."
