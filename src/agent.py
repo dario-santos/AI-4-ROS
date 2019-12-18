@@ -27,8 +27,8 @@ def callback(data):
 	x=data.pose.pose.position.x
 	y=data.pose.pose.position.y
 
-	if room_ant != 'Room -1' and room_util.GetNomenclature(x ,y) != 'Room -1':
-		room_current = room_util.GetNomenclature(x ,y)
+	if room_ant != 'Room -1' and room_util.getNomenclature(x ,y) != 'Room -1':
+		room_current = room_util.getNomenclature(x ,y)
 		if room_ant != room_current:
 			# Localização
 			graph_util.addNode(G, room_ant)
@@ -36,7 +36,7 @@ def callback(data):
 			graph_util.addEdge(G, room_current, room_ant)
 
 			# Memória
-			if not room_util.IsHall(roomName=room_ant) and not room_util.IsHall(roomName=room_current):
+			if not room_util.isHall(roomName=room_ant) and not room_util.isHall(roomName=room_current):
 				rooms[room_ant].SetIsSuit(True)
 				rooms[room_current].SetIsSuit(True)
 			
@@ -101,14 +101,14 @@ def callback2(data):
 
 		for i in G:
 			if len(rooms[i].GetObjectsByCategory(RoomObject.Category.person)) > 0:
-				if room_util.IsHall(roomName=i):
+				if room_util.isHall(roomName=i):
 					personsOnHalls+=1
 					nOfHalls+=1
 				else:
 					personsOnRooms+=1
 					nOfRooms+=1
 			else:
-				if room_util.IsHall(roomName=i):
+				if room_util.isHall(roomName=i):
 					nOfHalls+=1
 				else:
 					nOfRooms+=1
@@ -128,9 +128,9 @@ def callback2(data):
 		# Correr as salas visitadas e ver se tem 	
 
 	if data.data == '5':
-		print graph_util.closestRoom(G, room_util.GetNomenclature(x_ant, y_ant))
+		print graph_util.closestRoom(G, room_util.getNomenclature(x_ant, y_ant))
 	if data.data == '6':
-		print graph_util.shortestPath(G, room_util.GetNomenclature(x_ant, y_ant))
+		print graph_util.shortestPath(G, room_util.getNomenclature(x_ant, y_ant))
 
 	print "question is %s" % data.data
 

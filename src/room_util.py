@@ -1,6 +1,6 @@
 room_nomenclature_prefix = 'Room '
 
-def GetNumber(x, y):
+def getNumber(x, y):
     if x >= -0.7 and x <= 18.7 and y <= 0.2 and y >= -1.7:
         return 1
     elif x >= 3.1 and x <= 5.5 and y <= 6.5 and y >= 0.5:
@@ -32,10 +32,10 @@ def GetNumber(x, y):
     else:
         return -1
 
-def GetNomenclature(x, y):
-    return room_nomenclature_prefix + str(GetNumber(x, y))
+def getNomenclature(x, y):
+    return room_nomenclature_prefix + str(getNumber(x, y))
 
-def IsHall(roomNumber=-1, roomName=''):
+def isHall(roomNumber=-1, roomName=''):
     if roomName != '':
         return roomName == 'Room 1' or roomName == 'Room 2' or roomName == 'Room 3' or roomName == 'Room 4' 
     if roomNumber != -1:
