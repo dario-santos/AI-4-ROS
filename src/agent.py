@@ -99,11 +99,11 @@ def callback2(data):
 		count_suite = 0
 		count_meeting = 0
 		count_generic = 0
-		count_pc_single = 0
-		count_pc_double = 0
-		count_pc_suite = 0
-		count_pc_meeting = 0
-		count_pc_generic = 0
+		count_pc_single = 0.0
+		count_pc_double = 0.0
+		count_pc_suite = 0.0
+		count_pc_meeting = 0.0
+		count_pc_generic = 0.0
 		prob_single = 0.0
 		prob_double = 0.0
 		prob_suite = 0.0
@@ -113,25 +113,25 @@ def callback2(data):
 		for _, room in enumerate(rooms.values()):
 			if room.GetRoomType() == Room.RoomType.single:
 				count_single += 1
-				if room.GetObjectsByCategory(RoomObject.Category.computer)!= []:
+				if len(room.GetObjectsByCategory(RoomObject.Category.computer)) != 0:
 					count_pc_single += 1
 				
 			elif room.GetRoomType() == Room.RoomType.double:
-				if room.GetObjectsByCategory(RoomObject.Category.computer)!= []:
+				if len(room.GetObjectsByCategory(RoomObject.Category.computer)) != 0:
 					 count_double += 1
 					 count_pc_double += 1
 				else:
 					count_double += 1 
 					
 			elif room.GetRoomType() == Room.RoomType.suite:
-				if room.GetObjectsByCategory(RoomObject.Category.computer)!= []:
+				if len(room.GetObjectsByCategory(RoomObject.Category.computer)) != 0:
 					count_suite += 1 
 					count_pc_suite += 1
 				else:
-					count_suit += 1
+					count_suite += 1
 					
 			elif room.GetRoomType() == Room.RoomType.meeting:
-				if room.GetObjectsByCategory(RoomObject.Category.computer)!= []:
+				if len(room.GetObjectsByCategory(RoomObject.Category.computer)) != 0:
 					count_meeting += 1 
 					count_pc_meeting += 1
 				else:
@@ -139,8 +139,8 @@ def callback2(data):
 					
 			elif room.GetRoomType() == Room.RoomType.generic:
 				count_generic += 1
-				print "TOU AQUI"
-				if room.GetObjectsByCategory(RoomObject.Category.computer)!= []:
+
+				if len(room.GetObjectsByCategory(RoomObject.Category.computer)) > 0:
 					count_pc_generic += 1
 					
 		if count_single != 0:
@@ -154,8 +154,17 @@ def callback2(data):
 		if count_generic != 0:
 			prob_generic = count_pc_generic / count_generic
 		
-		print "SINGLE: %f" % prob_single
-		print "GENERIC: %f" % prob_generic
+		l = [prob_single, prob_double, prob_suite, prob_meeting, prob_generic]
+
+		max = 0.0
+		index = 0
+		for i,p in enumerate(l):
+			if p > max:
+				max = p
+				index = i
+		
+		print "MAIOR PROBABILIDADE %f , no indice %d" % (max, index)
+		
 		if prob_single > prob_double and prob_single > prob_suite and prob_single > prob_meeting and prob_single > prob_generic:
 			probSi = prob_single * 100
 			print "The probability of finding a computer is higher in the single room and is (%.0f%%)" % probSi
