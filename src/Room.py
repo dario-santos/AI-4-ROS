@@ -65,8 +65,7 @@ class Room:
             return RoomType.double
         elif nOfTables == 1 and nOfChairs > 2:
             return RoomType.meeting
-        else:
-            return RoomType.generic
+        return RoomType.generic
 
 class RoomType:
     none   = 0
@@ -88,5 +87,4 @@ class RoomType:
             return RoomType.meeting
         elif type_name == 'generic':
             return RoomType.generic
-        else:
-            return 0
+        return 0

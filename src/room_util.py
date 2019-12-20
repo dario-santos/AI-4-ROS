@@ -1,4 +1,5 @@
 import sys
+
 sys.path.insert(1, './')
 import RoomObject
 import Room
@@ -34,8 +35,7 @@ def getNumber(x, y):
         return 13
     elif x >= 8.4 and x <= 10.5 and y <= 6.4 and y >= 0.6:
         return 14
-    else:
-        return -1
+    return -1
 
 def getNomenclature(x, y):
     return room_nomenclature_prefix + str(getNumber(x, y))
@@ -58,11 +58,11 @@ def getProbabilityOfBeingOccupied(G,rooms):
     for i in G:
         if len(rooms[i].GetObjectsByCategory(RoomObject.Category.person)) > 0:
             if isHall(roomName=i):
-				personsOnHalls+=1
-				nOfHalls+=1
+                personsOnHalls+=1
+                nOfHalls+=1
             else:
-				personsOnRooms+=1
-				nOfRooms+=1
+                personsOnRooms+=1
+                nOfRooms+=1
         else:
             if isHall(roomName=i):
                 nOfHalls+=1
@@ -70,13 +70,12 @@ def getProbabilityOfBeingOccupied(G,rooms):
                 nOfRooms+=1
 
     if nOfHalls != 0:
-		probOfHalls = (personsOnHalls / nOfHalls) * 100
+	    probOfHalls = (personsOnHalls / nOfHalls) * 100
     if nOfRooms != 0:
-		probOfRooms = (personsOnRooms / nOfRooms) * 100
+	    probOfRooms = (personsOnRooms / nOfRooms) * 100
 
     if probOfHalls == probOfRooms:
-		return "The probability of finding a person is the same (%.0f%%)" % probOfHalls
+	    return "The probability of finding a person is the same (%.0f%%)" % probOfHalls
     elif probOfHalls > probOfRooms:
-		return "There\'s a bigger probability of finding a person in a hall (%.0f%%)" % probOfHalls
-		
+	    return "There\'s a bigger probability of finding a person in a hall (%.0f%%)" % probOfHalls
     return "There\'s a bigger probability of finding a person in a room (%.0f%%)" % probOfRooms
