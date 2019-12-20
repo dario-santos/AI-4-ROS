@@ -1,6 +1,4 @@
 import networkx as nx
-import sys
-sys.path.insert(1, 'C:\\Users\\dario\\OneDrive\\Documentos\\Github\\IA-4-ROS\\')
 from src import room_util
 from src import Room
 
