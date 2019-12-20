@@ -1,8 +1,7 @@
 import sys
-
-sys.path.insert(1, './')
-import RoomObject
-import Room
+sys.path.insert(1, 'C:\\Users\\dario\\OneDrive\\Documentos\\Github\\IA-4-ROS\\')
+from src import RoomObject
+from src import Room
 
 room_nomenclature_prefix = 'Room '
 

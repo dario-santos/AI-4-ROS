@@ -113,34 +113,27 @@ def callback2(data):
 		for _, room in enumerate(rooms.values()):
 			if room.GetRoomType() == Room.RoomType.single:
 				count_single += 1
-				if len(room.GetObjectsByCategory(RoomObject.Category.computer)) != 0:
+				if room.GetObjectsByCategory(RoomObject.Category.computer):
 					count_pc_single += 1
 				
 			elif room.GetRoomType() == Room.RoomType.double:
-				if len(room.GetObjectsByCategory(RoomObject.Category.computer)) != 0:
-					 count_double += 1
-					 count_pc_double += 1
-				else:
-					count_double += 1 
+				count_double += 1 
+				if room.GetObjectsByCategory(RoomObject.Category.computer):
+					count_pc_double += 1
 					
 			elif room.GetRoomType() == Room.RoomType.suite:
-				if len(room.GetObjectsByCategory(RoomObject.Category.computer)) != 0:
-					count_suite += 1 
+				count_suite += 1
+				if room.GetObjectsByCategory(RoomObject.Category.computer): 
 					count_pc_suite += 1
-				else:
-					count_suite += 1
 					
 			elif room.GetRoomType() == Room.RoomType.meeting:
-				if len(room.GetObjectsByCategory(RoomObject.Category.computer)) != 0:
-					count_meeting += 1 
+				count_meeting += 1
+				if room.GetObjectsByCategory(RoomObject.Category.computer):
 					count_pc_meeting += 1
-				else:
-					count_meeting += 1
 					
 			elif room.GetRoomType() == Room.RoomType.generic:
 				count_generic += 1
-
-				if len(room.GetObjectsByCategory(RoomObject.Category.computer)) > 0:
+				if room.GetObjectsByCategory(RoomObject.Category.computer):
 					count_pc_generic += 1
 					
 		if count_single != 0:
@@ -153,17 +146,6 @@ def callback2(data):
 			prob_meeting = count_pc_meeting / count_meeting
 		if count_generic != 0:
 			prob_generic = count_pc_generic / count_generic
-		
-		l = [prob_single, prob_double, prob_suite, prob_meeting, prob_generic]
-
-		max = 0.0
-		index = 0
-		for i,p in enumerate(l):
-			if p > max:
-				max = p
-				index = i
-		
-		print "MAIOR PROBABILIDADE %f , no indice %d" % (max, index)
 		
 		if prob_single > prob_double and prob_single > prob_suite and prob_single > prob_meeting and prob_single > prob_generic:
 			probSi = prob_single * 100
