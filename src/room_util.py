@@ -53,7 +53,7 @@ def getProbabilityOfBeingOccupied(G,rooms):
     probOfHalls = 0.0
     probOfRooms = 0.0
     for i in G:
-        if len(rooms[i].GetObjectsByCategory(RoomObject.Category.person)) > 0:
+        if rooms[i].GetObjectsByCategory(RoomObject.Category.person):
             if isHall(roomName=i):
                 personsOnHalls+=1
                 nOfHalls+=1

@@ -14,7 +14,7 @@ def test_Room():
 
 def test_duplicateItems():
     r1 = r.Room([])
-    assert len(r1.objects) == 0
+    assert not r1.objects
     r1.AddObject("person_Maria")
     r1.AddObject("person_Maria")
     assert len(r1.objects) == 1

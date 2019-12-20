@@ -34,7 +34,7 @@ def shortestPath(G, currentPos, goalPos='Room 1'):
 
 	try: 
 		path = nx.astar_path(G, currentPos, goalPos, weight='weight')
-	except:
+	except Exception as e:
 		return "There is no possible connection to " + goalPos + " from " + currentPos
 	
 
@@ -70,7 +70,7 @@ def closestRoom(G, rooms, current_room):
 			smallestPath = len(dic[k])
 			closestRoom = k
 
-	if closestRoom == None:
+	if closestRoom is None:
 		return "No known single rooms"
 
 	return "You have %s" % closestRoom

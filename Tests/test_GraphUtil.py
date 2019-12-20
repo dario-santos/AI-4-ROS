@@ -5,7 +5,7 @@ from src import graph_util as g
 
 def test_createGraph():
     G = g.createGraph()
-    assert G != None 
+    assert G is not None 
 
 def test_addNode():
     G = g.createGraph()
