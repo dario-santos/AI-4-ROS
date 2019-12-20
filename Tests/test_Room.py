@@ -1,7 +1,7 @@
 import pytest
 import sys
 
-sys.path.insert(0, '../')
+sys.path.insert(0, '/home/vsts/work/1/s')
 
 from src import RoomObject as rObject
 from src import Room as r
