@@ -1,4 +1,3 @@
-
 class RoomObject:
 
     def __init__(self, category, name):

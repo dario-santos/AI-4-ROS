@@ -1,4 +1,3 @@
-import sys
 from src import RoomObject
 
 class Room:
