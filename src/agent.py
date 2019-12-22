@@ -93,82 +93,8 @@ def callback2(data):
 		print room_util.getProbabilityOfBeingOccupied(G, rooms)
 	
 	if data.data == '4':
+		print room_util.getProbabilityComputer(rooms)
 		
-		count_single = 0
-		count_double = 0
-		count_suite = 0
-		count_meeting = 0
-		count_generic = 0
-		count_pc_single = 0.0
-		count_pc_double = 0.0
-		count_pc_suite = 0.0
-		count_pc_meeting = 0.0
-		count_pc_generic = 0.0
-		prob_single = 0.0
-		prob_double = 0.0
-		prob_suite = 0.0
-		prob_meeting = 0.0
-		prob_generic = 0.0
-		
-		for _, room in enumerate(rooms.values()):
-			if room.GetRoomType() == Room.RoomType.single:
-				count_single += 1
-				if room.GetObjectsByCategory(RoomObject.Category.computer):
-					count_pc_single += 1
-				
-			elif room.GetRoomType() == Room.RoomType.double:
-				count_double += 1 
-				if room.GetObjectsByCategory(RoomObject.Category.computer):
-					count_pc_double += 1
-					
-			elif room.GetRoomType() == Room.RoomType.suite:
-				count_suite += 1
-				if room.GetObjectsByCategory(RoomObject.Category.computer): 
-					count_pc_suite += 1
-					
-			elif room.GetRoomType() == Room.RoomType.meeting:
-				count_meeting += 1
-				if room.GetObjectsByCategory(RoomObject.Category.computer):
-					count_pc_meeting += 1
-					
-			elif room.GetRoomType() == Room.RoomType.generic:
-				count_generic += 1
-				if room.GetObjectsByCategory(RoomObject.Category.computer):
-					count_pc_generic += 1
-					
-		if count_single != 0:
-			prob_single = count_pc_single / count_single
-		if count_double != 0:
-			prob_double = count_pc_double / count_double
-		if count_suite != 0:
-			prob_suite = count_pc_suite / count_suite
-		if count_meeting != 0:
-			prob_meeting = count_pc_meeting / count_meeting
-		if count_generic != 0:
-			prob_generic = count_pc_generic / count_generic
-		
-		if prob_single > prob_double and prob_single > prob_suite and prob_single > prob_meeting and prob_single > prob_generic:
-			probSi = prob_single * 100
-			print "The probability of finding a computer is higher in the single room and is (%.0f%%)" % probSi
-		
-		elif prob_double > prob_suite and prob_double > prob_meeting and prob_double > prob_generic:
-			probD = prob_double * 100
-			print "The probability of finding a computer is higher in the suite room and is (%0.f%%)" % probD
-		
-		elif prob_suite > prob_meeting and prob_suite > prob_generic:
-			probSu = prob_suite *100
-			print "The probability of finding a computer is higher in the meeting room and is(%0.f%%)" % probSu
-		
-		elif prob_meeting > prob_generic:
-			probM = prob_meeting *100
-			print "The probability of finding a computer is higher in the meeting room and is(%0.f%%)" % probM
-		
-		elif prob_generic != 0.0:
-			probG = prob_generic * 100
-			print "The probability of finding a computer is higher in the generic room and is(%0.f%%)" % probG
-		else:
-			print "No computers found yet."
-	
 	if data.data == '5':
 		print graph_util.closestRoom(G, rooms, room_util.getNomenclature(x_ant, y_ant))
 		

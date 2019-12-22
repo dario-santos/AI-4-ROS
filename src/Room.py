@@ -66,6 +66,7 @@ class Room:
         return RoomType.generic
 
 class RoomType:
+    size = 5
     none   = 0
     single   = 1
     double   = 2
@@ -86,3 +87,17 @@ class RoomType:
         elif type_name == 'generic':
             return RoomType.generic
         return 0
+
+    @staticmethod
+    def GetName(type_index):
+        if type_index is RoomType.single:
+            return "single"
+        elif type_index is RoomType.double:
+            return "double"
+        elif type_index is RoomType.suite:
+            return "suite"
+        elif type_index is RoomType.meeting:
+            return "meeting"
+        elif type_index is RoomType.generic:
+            return "generic"
+        return "None"

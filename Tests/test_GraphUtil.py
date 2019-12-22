@@ -1,6 +1,7 @@
 import pytest
-import sys
-sys.path.insert(0, '/home/vsts/work/1/s')
+import dependencies 
+import sys ; sys.path.insert(0, Dependencies.program_path)
+
 from src import graph_util as g
 
 def test_createGraph():

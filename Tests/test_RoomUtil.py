@@ -1,9 +1,9 @@
 import pytest
-import sys
-
-sys.path.insert(0, '/home/vsts/work/1/s')
+import dependencies
+import sys ; sys.path.insert(0, dependencies.program_path)
 
 from src import room_util as ru
+from src import Room as r
 
 def test_getNumber11():
     assert ru.getNumber(15,5) == 11
@@ -71,5 +71,63 @@ def test_isHallRoomInvalidArguments():
         ru.isHall()
         ru.isHall(-1, '')
         ru.isHall(-1, None)
-    except:
+    except Exception as e:
         assert True
+
+def test_getProbabilityComputer():
+    rooms = {'Room 1': r.Room([]),
+		'Room 2': r.Room([]),
+		'Room 3': r.Room([]),
+		'Room 4': r.Room([]),
+		'Room 5': r.Room([]),
+		'Room 6': r.Room([]),
+		'Room 7': r.Room([]),
+		'Room 8': r.Room([]),
+		'Room 9': r.Room([]),
+	    'Room 10': r.Room([]),
+		'Room 11': r.Room([]),
+	    'Room 12': r.Room([]),
+		'Room 13': r.Room([]),
+		'Room 14': r.Room([])
+		}
+    
+    rooms['Room 1'].AddObject("computer_apple1")
+    rooms['Room 1'].AddObject("bed_bed1")
+    
+    rooms['Room 2'].AddObject("chair_chair1")
+    rooms['Room 2'].AddObject("bed_bed1")
+    
+    rooms['Room 3'].AddObject("bed_bed1")    
+    
+    rooms['Room 4'].AddObject("bed_bed1")    
+    rooms['Room 4'].AddObject("bed_bed2")
+    rooms['Room 4'].AddObject("computer_apple1")
+    
+    rooms['Room 5'].AddObject("book_book1")
+    rooms['Room 5'].AddObject("bed_bed1")    
+    rooms['Room 5'].AddObject("bed_bed2")
+    rooms['Room 5'].AddObject("computer_apple2")
+
+
+    assert ru.getProbabilityComputer(rooms) == ("double", 1)
+
+
+def test_getProbabilityComputerNone():
+    rooms = {'Room 1': r.Room([]),
+		'Room 2': r.Room([]),
+		'Room 3': r.Room([]),
+		'Room 4': r.Room([]),
+		'Room 5': r.Room([]),
+		'Room 6': r.Room([]),
+		'Room 7': r.Room([]),
+		'Room 8': r.Room([]),
+		'Room 9': r.Room([]),
+	    'Room 10': r.Room([]),
+		'Room 11': r.Room([]),
+	    'Room 12': r.Room([]),
+		'Room 13': r.Room([]),
+		'Room 14': r.Room([])
+		}
+
+    assert ru.getProbabilityComputer(rooms) == ("None", 0)
+    

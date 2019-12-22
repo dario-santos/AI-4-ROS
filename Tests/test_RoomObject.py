@@ -1,10 +1,8 @@
 import pytest
-import sys
-
-sys.path.insert(0, '/home/vsts/work/1/s')
+import dependencies
+import sys ; sys.path.insert(0, dependencies.program_path)
 
 from src import RoomObject as rObject
-
 
 def test_objectCategories():
     o1 = rObject.RoomObject(rObject.Category.person, "Anna")

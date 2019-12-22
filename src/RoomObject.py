@@ -42,5 +42,4 @@ class Category:
             return Category.computer
         elif category_name == 'table':
             return Category.table
-        else:
-            return Category.mistery
+        return Category.mistery

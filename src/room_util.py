@@ -76,3 +76,28 @@ def getProbabilityOfBeingOccupied(G,rooms):
     elif probOfHalls > probOfRooms:
 	    return "There\'s a bigger probability of finding a person in a hall (%.0f%%)" % probOfHalls
     return "There\'s a bigger probability of finding a person in a room (%.0f%%)" % probOfRooms
+
+def getProbabilityComputer(rooms):
+    count_rooms = [0] * Room.RoomType.size
+    count_pc_rooms = [0.0] * Room.RoomType.size
+    prob_rooms = [0.0] * Room.RoomType.size
+
+    for _, room in enumerate(rooms.values()):
+        t = room.GetRoomType()
+        if t is not Room.RoomType.none:
+            count_rooms[t - 1] += 1
+            if room.GetObjectsByCategory(RoomObject.Category.computer):
+                count_pc_rooms[t - 1] += 1
+        
+    for i,o in enumerate(count_rooms):
+        if o != 0:
+            prob_rooms[i] = count_pc_rooms[i] / o
+
+    p = max(prob_rooms)
+    if p == 0.0:
+        return (Room.RoomType.GetName(0), 0)
+
+
+    index = prob_rooms.index(p) + 1
+
+    return (Room.RoomType.GetName(index), p)
