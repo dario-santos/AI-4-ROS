@@ -1,6 +1,7 @@
 import pytest
 import dependencies
-import sys ; sys.path.insert(0, dependencies.program_path)
+import sys 
+sys.path.insert(0, dependencies.program_path)
 
 from src import room_util as ru
 from src import Room as r

@@ -97,7 +97,6 @@ def getProbabilityComputer(rooms):
     if p == 0.0:
         return (Room.RoomType.GetName(0), 0)
 
-
     index = prob_rooms.index(p) + 1
 
     return (Room.RoomType.GetName(index), p)
