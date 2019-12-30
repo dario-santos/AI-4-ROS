@@ -285,5 +285,17 @@ PARA CADA quarto que o agente conhece ENTÃO
 
 ### Questão 4 - If you want to find a computer, to which type of room do you go to?
 
+A nossa abordagem a esta questão foi a de calcular a probabilidade de um tipo de quarto ter um computador e retornar a maior probabilidade.
+Ou seja,
 
+Cálculamos as probabilidades:
 
+P(QuartoSingleterComputdor)   = QuartosSingleComComputador/QuartosSingle
+P(QuartoDoubleMterComputdor)  = QuartosDoubleComComputador/QuartosDouble
+P(QuartoSuiteMterComputdor)   = QuartosSuiteComComputador/QuartosSuite
+P(QuartoMeetingMterComputdor) = QuartosMeetingComComputador/QuartosMeeting
+P(QuartoGenericMterComputdor) = QuartosGenericComComputador/QuartosGeneric
+
+Sabendo qual o tipo de quarto tem mais quartos com computador podemos responder à questão.
+
+### Questão 5 - What is the number of the closest single room?
