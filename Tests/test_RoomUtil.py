@@ -108,9 +108,19 @@ def test_getProbabilityComputer():
     rooms['Room 5'].AddObject("bed_bed1")    
     rooms['Room 5'].AddObject("bed_bed2")
     rooms['Room 5'].AddObject("computer_apple2")
-
-
-    assert ru.getProbabilityComputer(rooms) == ("double", 1)
+    
+    G = g.createGraph()
+    g.addNode(G, 'Room 1')
+    g.addNode(G, 'Room 2')
+    g.addNode(G, 'Room 3')
+    g.addNode(G, 'Room 4')
+    g.addNode(G, 'Room 5')
+    g.addEdge(G, 'Room 1', 'Room 2')
+    g.addEdge(G, 'Room 1', 'Room 3')
+    g.addEdge(G, 'Room 1', 'Room 4')
+    g.addEdge(G, 'Room 1', 'Room 5')
+    
+    assert ru.getProbabilityComputer(G, rooms) == ("double", 1)
 
 
 def test_getProbabilityComputerNone():
@@ -129,6 +139,20 @@ def test_getProbabilityComputerNone():
 		'Room 13': r.Room([]),
 		'Room 14': r.Room([])
 		}
-
-    assert ru.getProbabilityComputer(rooms) == ("None", 0)
+    G = g.createGraph()
+    g.addNode(G, 'Room 1')
+    g.addNode(G, 'Room 2')
+    g.addNode(G, 'Room 3')
+    g.addNode(G, 'Room 4')
+    g.addNode(G, 'Room 5')
+    g.addNode(G, 'Room 6')
+    g.addNode(G, 'Room 7')
+    g.addEdge(G, 'Room 1', 'Room 2')
+    g.addEdge(G, 'Room 1', 'Room 3')
+    g.addEdge(G, 'Room 1', 'Room 4')
+    g.addEdge(G, 'Room 1', 'Room 5')
+    g.addEdge(G, 'Room 1', 'Room 6')
+    g.addEdge(G, 'Room 1', 'Room 7')
+    
+    assert ru.getProbabilityComputer(G, rooms) == ("None", 0)
     
