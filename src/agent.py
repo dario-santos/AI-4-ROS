@@ -6,6 +6,7 @@
 import rospy
 from std_msgs.msg import String
 from nav_msgs.msg import Odometry
+import time
 import graph_util
 import room_util
 import Room
@@ -18,6 +19,7 @@ y_ant = 0
 obj_ant = ''
 G = None
 rooms = None
+time_initial = time.time()
 
 # ---------------------------------------------------------------
 # odometry callback
@@ -74,7 +76,7 @@ def callback1(data):
 # ---------------------------------------------------------------
 # questions_keyboard callback
 def callback2(data):
-	global G, x_ant, y_ant, rooms
+	global G, x_ant, y_ant, rooms, time_initial
 	
 	if data.data == '1':
 		cnt = 0
@@ -101,6 +103,15 @@ def callback2(data):
 	if data.data == '6':
 		print graph_util.shortestPath(G, room_util.getNomenclature(x_ant, y_ant))
 
+	if data.data == '7':
+		time_diff = time.time() - time_initial 
+		numOfBooks = room_util.getNumberOfBooks(rooms)
+		estimation = (120 * numOfBooks) / time_diff
+		if estimation == 1:
+			print "It's estimated that %d book will be found in the next 2 minutes." % estimation
+		else:
+			print "It's estimated that %d books will be found in the next 2 minutes." % estimation
+		
 	print "question is %s" % data.data
 
 # ---------------------------------------------------------------

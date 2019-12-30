@@ -1,6 +1,6 @@
 import networkx as nx
-from src import room_util
-from src import Room
+import room_util
+import Room
 
 def createGraph():
 	G = nx.Graph()

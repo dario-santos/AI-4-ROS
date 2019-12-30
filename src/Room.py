@@ -1,4 +1,4 @@
-from src import RoomObject
+import RoomObject
 
 class Room:
     

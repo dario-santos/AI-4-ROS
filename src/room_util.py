@@ -1,5 +1,5 @@
-from src import RoomObject
-from src import Room
+import RoomObject
+import Room
 
 room_nomenclature_prefix = 'Room '
 
@@ -100,3 +100,9 @@ def getProbabilityComputer(rooms):
     index = prob_rooms.index(p) + 1
 
     return (Room.RoomType.GetName(index), p)
+
+def getNumberOfBooks(rooms):
+    cnt = 0
+    for _, room in enumerate(rooms.values()):
+        cnt += len(room.GetObjectsByCategory(RoomObject.Category.book))
+    return cnt
