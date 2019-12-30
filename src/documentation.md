@@ -74,7 +74,7 @@ Este método devolve o tipo de quarto a partir dos objetos contidos na sua lista
 
 ### Classe RoomType
 
-A classe RoomType é utilizada como um enumerador que contém os tipos de quarto.
+A classe RoomType é utilizada como um enum que contém os tipos de quarto.
 
 ### Variáveis Estáticas
 
@@ -96,3 +96,46 @@ Exemplo: 'single' devolve o valor Room.single.
 Este método realiza a operação inversa ao método GetType.
 Dado um tipo de quarto é devolvido o seu nome.
 Exemplo: RoomType.single devolve o valor 'single'
+
+## Ficheiro RoomObject.py
+
+Este ficheiro contém as classes RoomObject e Category.
+
+### Classe RoomObject
+
+Esta classe representa um objeto do mundo do _ROS_.
+
+**__init__(self, category, name)**<br>
+Este método é o construtor da classe RoomObject.
+Este método declara dois campos _name_, o nome do objeto, e _category_, a categoria do objeto.
+
+**SetName(self, name)**<br>
+**GetName(self)**<br>
+Estes dois métodos são respetivamente o set e o get da variável name.
+name é uma variável do tipo string que contém o nome do objeto.
+
+**SetCategory(self, category)**<br>
+**GetCategory(self)**<br>
+Estes dois métodos são respetivamente o set e o get da variável category.
+category é uma variável do tipo integer que contém a categoria do objeto.
+
+### Classe Category
+
+A classe Category é utilizada como um enum que contém as diferentes categorias de um objeto.
+
+### Variáveis Estáticas
+
+door    -> Categoria de objeto door, é utilizado como um None<br>
+bed     -> Categoria de objeto bed      <br>
+book    -> Categoria de objeto book     <br>
+chair   -> Categoria de objeto chair    <br>
+computer-> Categoria de objeto computer <br>
+person  -> Categoria de objeto person   <br>
+table   -> Categoria de objeto table    <br>
+mistery -> Categoria de objeto mistery  <br>
+
+### Métodos Estáticos
+
+**GetCategory(category_name)**<br>
+Este método devolve a categoria de um objeto dado o nome da categoria. 
+Exemplo: 'bed' devolve o valor Category.bed.
