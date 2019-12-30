@@ -283,6 +283,8 @@ PARA CADA quarto que o agente conhece ENTÃO
     SE este quarto não é um corredor ENTÃO
          pessoasNumQuarto = pessoasNumQuarto + PessoasNesteQuarto
 
+Esta questão foi respondida na função **AINDA NÃO FOI RESPONDIDA** no ficheiro **room_util.py**
+
 ### Questão 4 - If you want to find a computer, to which type of room do you go to?
 
 A nossa abordagem a esta questão foi a de calcular a probabilidade de um tipo de quarto ter um computador e retornar a maior probabilidade.
@@ -299,3 +301,16 @@ P(QuartoGenericMterComputdor) = QuartosGenericComComputador/QuartosGeneric
 Sabendo qual o tipo de quarto tem mais quartos com computador podemos responder à questão.
 
 ### Questão 5 - What is the number of the closest single room?
+
+Para conseguirmos responder a esta questão precisámos, para além de armazenar os objetos, conseguir representar as suas ligações. 
+Decidimos utilizar um grafo para representar as ligações entre os diferentes quartos, em que cada nodo é uma sala e  cada aresta uma ligação entre dois quartos.
+
+Para além disto foi atribuído a cada aresta o peso 1 para que possamos realizar pesquisas informadas.
+
+Tendo estes problemas resolvidos a nossa abordagem foi a de utilizar o algoritmo de Dijkstra para calcular os caminhos mais curtos de um nodo para os restantes e, indo do caminho mais curto para o mais longo, verificar se este era do tipo single, caso fosse retornávamos esse quarto.
+
+Esta questão foi respondida na função **shortestPath** no ficheiro **graph_util.py** utilizando a biblioteca networkx.
+
+### Questão 6 -
+ 
+
