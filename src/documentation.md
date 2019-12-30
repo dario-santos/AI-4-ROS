@@ -263,4 +263,27 @@ PARA CADA quarto que o agente conhece ENTÃO
 
 Esta questão foi respondida na função **callback2** no ficheiro **agent.py**.
 
-### Questão 3 - I s it more probable to find people in the corridors or inside the rooms?
+### Questão 3 - Is it more probable to find people in the corridors or inside the rooms?
+
+Inicialmente decidimos calcular a probabilidade de um quarto estar ocupado e a probabilidade de um corredor estar ocupado, verificando depois qual destes era a maior.
+
+Mas depois de discutirmos acerca desta interpretação foi decidido que isto não respondia à questão.
+
+Sendo assim decidimos decidimos cálcular a probabilidade de uma pessoa estar num quarto e comparar com a probabilidade de uma pessoa estar num corredor,
+como no nosso universo uma pessoa ou está num quarto ou num corredor só necessitamos de calcular uma das probabilidades (pois a outra será o seu complementar).
+
+P(PessoaNumQuarto) = NúmeroDePessoasEmQuartos/NúmeroDePessoasConhecidas
+
+~P(PessoasNumQuarto) = P(PessoasNumCorredor)
+
+Pseudo-código:
+
+PARA CADA quarto que o agente conhece ENTÃO
+    numPessoas = numPessoas + PessoasNesteQuarto
+    SE este quarto não é um corredor ENTÃO
+         pessoasNumQuarto = pessoasNumQuarto + PessoasNesteQuarto
+
+### Questão 4 - If you want to find a computer, to which type of room do you go to?
+
+
+
