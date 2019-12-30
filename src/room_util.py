@@ -77,12 +77,15 @@ def getProbabilityOfBeingOccupied(G,rooms):
 	    return "There\'s a bigger probability of finding a person in a hall (%.0f%%)" % probOfHalls
     return "There\'s a bigger probability of finding a person in a room (%.0f%%)" % probOfRooms
 
-def getProbabilityComputer(rooms):
+def getProbabilityComputer(G, rooms):
     count_rooms = [0] * Room.RoomType.size
     count_pc_rooms = [0.0] * Room.RoomType.size
     prob_rooms = [0.0] * Room.RoomType.size
 
-    for _, room in enumerate(rooms.values()):
+    for key, room in enumerate(rooms.values()):
+        if key is not in G:
+            continue
+
         t = room.GetRoomType()
         if t is not Room.RoomType.none:
             count_rooms[t - 1] += 1

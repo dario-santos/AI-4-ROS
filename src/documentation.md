@@ -139,3 +139,41 @@ mistery -> Categoria de objeto mistery  <br>
 **GetCategory(category_name)**<br>
 Este método devolve a categoria de um objeto dado o nome da categoria. 
 Exemplo: 'bed' devolve o valor Category.bed.
+
+## Ficheiro room_util.py
+
+O ficheiro room_util.py contém funções auxiliares que ajudam no tratamento dos dados obtidos pelo _ROS_.
+
+### Variáveis globais
+
+room_nomenclature_prefix -> assegura que é utilizado o mesmo prefixo do quarto em todo o programa.
+
+### Funções
+
+**getNumber(x, y)**<br>
+Esta função devolve o número do quarto dado uma posição (x, y).
+
+**getNomenclature(x, y)**<br>
+Esta função devolve o nome do quarto dado uma posição (x, y).
+
+**isHall(roomNumber, roomName)**<br>
+Esta função devolve verdade caso o quarto com o número roomNumber ou o nome roomNome seja um corredar, falso caso contrário.
+roomNumber e roomName são dois argumentos opcionais mas em que se deve passar sempre um para a função, caso não seja passado um dos argumentos é lançada uma excepção.
+
+**getProbabilityOfBeingOccupied(G, rooms)**<br>
+Esta função responde à questão número 3.
+Cálcula a probabilidade de um quarto e de um corredor estarem ocupados e retorna uma string com toda a informação.
+Esta função recebe um grafo e um dicionário.
+Tirámos proveito do facto do grafo conter, para além das ligações entre as salas, os quartos visitados.
+Sendo assim para cada nodo no grafo vamos ver se este contém uma pessoa, e se é (ou não) um corredor.
+
+**getProbabilityComputer(G, rooms)**<br>
+Esta função responde à questão número 4.
+Cálcula a probabilidade de um computador estar em cada um dos tipos de quarto (ver a classe RoomsType) e retorna uma string com toda a informação.
+Esta função recebe um grafo e um dicionário.
+Tirámos proveito do facto do grafo conter, para além das ligações entre as salas, os quartos conhecidos pelo _ROS_.
+Sendo assim para cada nodo no grafo vamos calcular o seu tipo de quarto e se contém um ou mais computadores, incrementando as variáveis correspondentes.
+
+**getNumberOfBooks(rooms)**<br>
+Esta função auxilia na resposta à pergunta número 7.
+Conta o número de livros conhecidos pelo _ROS_
