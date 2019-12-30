@@ -160,8 +160,15 @@ Esta função devolve o nome do quarto dado uma posição (x, y).
 Esta função devolve verdade caso o quarto com o número roomNumber ou o nome roomNome seja um corredar, falso caso contrário.
 roomNumber e roomName são dois argumentos opcionais mas em que se deve passar sempre um para a função, caso não seja passado um dos argumentos é lançada uma excepção.
 
-**getProbabilityOfBeingOccupied(G, rooms)**<br>
+**getProbabilityOfFindingPerson(G, rooms)**<br>
 Esta função responde à questão número 3.
+Cálcula a probabilidade de uma pessoa estar num quarto e a de uma pessoa estar num corredor, e retorna uma string com toda a informação.
+Esta função recebe um grafo e um dicionário.
+Tirámos proveito do facto do grafo conter, para além das ligações entre as salas, os quartos visitados.
+Sendo assim para cada nodo no grafo vamos ver se este contém uma pessoa, e se é (ou não) um corredor.
+
+**getProbabilityOfBeingOccupied(G, rooms)**<br>
+Esta função responde à questão número 9.
 Cálcula a probabilidade de um quarto e de um corredor estarem ocupados e retorna uma string com toda a informação.
 Esta função recebe um grafo e um dicionário.
 Tirámos proveito do facto do grafo conter, para além das ligações entre as salas, os quartos visitados.
@@ -283,7 +290,7 @@ PARA CADA quarto que o agente conhece ENTÃO
     SE este quarto não é um corredor ENTÃO
          pessoasNumQuarto = pessoasNumQuarto + PessoasNesteQuarto
 
-Esta questão foi respondida na função **AINDA NÃO FOI RESPONDIDA** no ficheiro **room_util.py**
+Esta questão foi respondida na função **getProbabilityOfFindingPerson** no ficheiro **room_util.py**
 
 ### Questão 4 - If you want to find a computer, to which type of room do you go to?
 
@@ -348,3 +355,15 @@ A resposta a esta pergunta passa por cálcular as seguintes probabilidades:
 - P(QuartoOcupado) = QuartosOcupados/NumeroQuartos
 
 Esta questão foi respondida na função **getProbabilityOfBeingOccupied** no ficheiro **room_util.py**
+
+
+## Abordagem ao problema
+
+Começámos por pensar em formas de representar o conhecimento do nosso agente.
+
+Depois de uma leitura do enunciado foram identificados dois objetos principais, quartos e objetos.
+Para cada um destes objetos foi desenvolvida uma classe de forma a organizar o código que dizia respeito a cada um.
+
+Para os quartos foi desenvolvida a classe Room, que se encontra no ficheiro Room.py, e para os objetos foi desenvolvida a classe RoomObject, que se encontra no ficheiro RoomObject.py.
+
+Posteriormente foi adicionado um grafo de forma a se representar as ligações entra cada quarto, à qual foram desenvolvidas as funções auxiliares que se encontram no ficheiro graph_util.py.
