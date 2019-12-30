@@ -205,3 +205,62 @@ Esta função responde à questão número 5.
 Dado um nodo de partida, um dicionário de quartos e um grafo é cálculado o quarto do tipo _single_ mais próximo do _ROS_.
 Esta função utiliza o algoritmo dijkstra para cálcular o caminho mais curto do quarto atual para todos os outros.
 Nesta função o dicionário é apenas utilizado para se extraír a informação do tipo de quarto.
+
+
+## Abordagem às questões
+
+De forma inicial as questões foram agrupadas de acordo com a sua semelhança e dependência.
+Por exemplo, as questões 5 e 6 estão ambas relacionadas a caminhos não dependendo dos objetos que cada quarto contém.
+
+### Agrupamento das questões
+
+Tendo o que foi dito anteriormente as questões foram agrupadas da seguinte forma:
+
+As questões 1 e 2 dizem ambas respeito conhecimento que o _ROS_ contém dos objetos de cada sala.
+
+As questões 3 e 4 dependem da deteção de objetos, tal como as questões 1 e 2, mas o seu foco principal é o cálculo de probabilidades face ao tipo de quarto.
+
+As questões 5 e 6 dizem apenas respeito ao conhecimento que o _ROS_ tem sobre as ligações de cada quarto.
+
+A questão 7 depende do tempo passado.
+
+A questão 8 depende das redes baisianas.
+
+
+### Questão 1 - How many rooms are not occupied
+
+Um quarto está ocupado se exister pelo menos uma pessoa no mesmo.
+
+Sendo assim só temos que contar o número de quartos, dos que o agente conheçe, que não contém pessoas.
+
+Pseudo-código:
+
+PARA CADA quarto que o agente conhece ENTÃO
+  SE este quarto não contém pessoas ENTÃO
+     incrementar o número de quartos desocupados. 
+
+Esta questão foi respondida na função **callback2** no ficheiro **agent.py**.
+
+### Questão 2 - How many suites did you find until now?
+
+Esta questão levantou algumas dúvidas em relação ao que considerariamos uma suíte.
+Dúvidas que foram esclarecidas com o docente da unidade curricular.
+
+Admitimos que uma suíte deve cumprir dois requisitos:
+
+- Estar conectado a outro quarto.
+- Conter pelo menos duas camas.
+
+Para além disto, contamos ambos os quartos como uma única suíte.
+
+Tendo estas considerações feitas falta apenas consultar os quartos visitados pelo agente, até ao momento, e contar o número de quartos que cumprem estes requisitos.
+
+Pseudo-código:
+
+PARA CADA quarto que o agente conhece ENTÃO
+  SE este quarto está ligado a outro quarto e contém mais do que duas camas ENTÃO
+     incrementar o número de suítes existentes.
+
+Esta questão foi respondida na função **callback2** no ficheiro **agent.py**.
+
+### Questão 3 - I s it more probable to find people in the corridors or inside the rooms?
