@@ -26,8 +26,8 @@ time_initial = time.time()
 def callback(data):
 	global x_ant, y_ant, room_ant, G, rooms
 	
-	x=data.pose.pose.position.x
-	y=data.pose.pose.position.y
+	x = data.pose.pose.position.x
+	y = data.pose.pose.position.y
 
 	if room_ant != 'Room -1' and room_util.getNomenclature(x ,y) != 'Room -1':
 		room_current = room_util.getNomenclature(x ,y)
@@ -69,6 +69,8 @@ def callback1(data):
 			print "object is %s" % o
 		
 		rooms[room_ant] = current_room
+
+		# Debug print
 		print "object is %s" % data.data
 		
 	obj_ant = obj
@@ -93,16 +95,12 @@ def callback2(data):
 		print "There are %d suits" % cnt
 	if data.data == '3':
 		print room_util.getProbabilityOfBeingOccupied(G, rooms)
-	
 	if data.data == '4':
 		print room_util.getProbabilityComputer(rooms)
-		
 	if data.data == '5':
 		print graph_util.closestRoom(G, rooms, room_util.getNomenclature(x_ant, y_ant))
-		
 	if data.data == '6':
 		print graph_util.shortestPath(G, room_util.getNomenclature(x_ant, y_ant))
-
 	if data.data == '7':
 		time_diff = time.time() - time_initial 
 		numOfBooks = room_util.getNumberOfBooks(rooms)
@@ -111,8 +109,6 @@ def callback2(data):
 			print "It's estimated that %d book will be found in the next 2 minutes." % estimation
 		else:
 			print "It's estimated that %d books will be found in the next 2 minutes." % estimation
-		
-	print "question is %s" % data.data
 
 # ---------------------------------------------------------------
 def agent():
