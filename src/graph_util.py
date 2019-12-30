@@ -56,13 +56,13 @@ def shortestPath(G, currentPos, goalPos='Room 1'):
 
 def closestRoom(G, rooms, current_room):
 	if current_room == 'Room -1':
-	 return "Please move a little, you are between two rooms."
+	 return "Please move a little bit, you are between two rooms."
 
 	dic = nx.algorithms.shortest_path(G, current_room, weight='weight')
 	closestRoom = None
 	smallestPath = 999
 
-	for i,k in enumerate(dic.keys()):
+	for _,k in enumerate(dic.keys()):
 		if k == current_room:
 			continue
 
@@ -73,4 +73,4 @@ def closestRoom(G, rooms, current_room):
 	if closestRoom is None:
 		return "No known single rooms"
 
-	return "You have %s" % closestRoom
+	return "The room %s is the closest single room." % closestRoom

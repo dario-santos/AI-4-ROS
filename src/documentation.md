@@ -176,4 +176,32 @@ Sendo assim para cada nodo no grafo vamos calcular o seu tipo de quarto e se con
 
 **getNumberOfBooks(rooms)**<br>
 Esta função auxilia na resposta à pergunta número 7.
-Conta o número de livros conhecidos pelo _ROS_
+Conta o número de livros conhecidos pelo _ROS_.
+
+## Ficheiro graph_util.py
+
+O ficheiro graph_util.py contém funções auxiliares que ajudam no tratamento dos dados obtidos pelo _ROS_.
+Mais especificamente, a sua localização.
+Utilizámos a biblioteca networkx.
+
+**createGraph()**<br>
+Esta função cria um grafo vazio.
+
+**addNode(G, node)**<br>
+Esta função adiciona o nodo _node_ ao grafo _G_.
+Esta função verifica também se o nodo é válido e se este já não existe no grafo.
+
+**addEdge(G, node_1, node_2)**<br>
+Esta função adiciona uma aresta entre os nodos *node_1* e *node_2*.
+Esta função verifica também se a aresta é válida e se esta já não existe no grafo.
+
+**shortestPath(G, currentPos, goalPos='Room 1')**<br>
+Esta função responde à questão número 6.
+Dado um nodo de partida e um de chegada é cálculado o caminho mais curto entre ambos.
+Esta função utiliza a pesquisa informada, A*.
+
+**closesteRoom(G, rooms, current_room)**<br>
+Esta função responde à questão número 5.
+Dado um nodo de partida, um dicionário de quartos e um grafo é cálculado o quarto do tipo _single_ mais próximo do _ROS_.
+Esta função utiliza o algoritmo dijkstra para cálcular o caminho mais curto do quarto atual para todos os outros.
+Nesta função o dicionário é apenas utilizado para se extraír a informação do tipo de quarto.
