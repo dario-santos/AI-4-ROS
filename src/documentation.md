@@ -309,8 +309,42 @@ Para além disto foi atribuído a cada aresta o peso 1 para que possamos realiza
 
 Tendo estes problemas resolvidos a nossa abordagem foi a de utilizar o algoritmo de Dijkstra para calcular os caminhos mais curtos de um nodo para os restantes e, indo do caminho mais curto para o mais longo, verificar se este era do tipo single, caso fosse retornávamos esse quarto.
 
+Esta questão foi respondida na função **closestRoom** no ficheiro **graph_util.py** utilizando a biblioteca networkx.
+
+### Questão 6 - How can you go from the current room to the elevator?
+
+Aproveitando o facto de termos armazenadas as ligações entre os quartos num grafo, podémos responder a esta questão utilizando uma simples pesquisa informada.
+
+Utilizámos a pesquisa informada A*, e a bilbioteca networkx.
+
 Esta questão foi respondida na função **shortestPath** no ficheiro **graph_util.py** utilizando a biblioteca networkx.
 
-### Questão 6 -
- 
+### Questão 7 - How many books do you estimate to find in the next 2 minutes?
 
+Sabendo o número de livros que o agente conhece e o tempo decorrido podemos fazer uma regra de 3 simples para cálcular o número estimado de livros para dois minutos.
+
+
+NúmeroDeLivrosConhecidos --------------- TempoDecorrido
+          X              --------------- 120 
+
+X = 120 * NúmeroDeLivrosConhecidos / TempoDecorrido
+
+Esta questão foi respondida na função **callback2** no ficheiro **agent.py**
+
+
+
+### Questão 8 -
+
+Não pensei nesta pergunta mas vai utilizar redes baisianas.
+
+
+### Questão 9 - Is it more probable to a room be occuped or a corridor?
+
+Como foi discutido na questão 3, esta questão adicional foi acrescentada a uma interpretação errada que considerámos uma mais valia manter como uma questão adicional.
+
+A resposta a esta pergunta passa por cálcular as seguintes probabilidades:
+
+- P(CorredorOcupado) = CorredoresOcupados/NumeroCorredores
+- P(QuartoOcupado) = QuartosOcupados/NumeroQuartos
+
+Esta questão foi respondida na função **getProbabilityOfBeingOccupied** no ficheiro **room_util.py**
