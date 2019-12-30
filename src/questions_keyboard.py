@@ -24,13 +24,14 @@ def questions():
 	print '  6-How can you go from the current room to the elevator?'
 	print '  7-How many books do you estimate to find in the next 2 minutes?'
 	print '  8-What is the probability of finding a table in a room without books but that has at least one chair?'
- 
+	print '  9-Is it more probable to a corridor be occupied or a room?'
+	
 	tty.setcbreak(sys.stdin)
 
 	while not rospy.is_shutdown():
 		# read from keyboard
 		k=sys.stdin.read(1)
-		if int(k) < 1 or int(k) >8:
+		if int(k) < 1 or int(k) > 9:
 			continue
 		pub.publish(k)
 		#print 'Asked question: ' , k

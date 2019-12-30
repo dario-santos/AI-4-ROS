@@ -82,21 +82,24 @@ def callback2(data):
 	
 	if data.data == '1':
 		cnt = 0
-		for _,room in enumerate(rooms.values()): 
+		for key, room in enumerate(rooms.values()):
+			
 			if room.IsOccupied():
 				cnt += 1
+
 		print "There are %d rooms occupied" % cnt
 	if data.data == '2':
 		cnt = 0
-		for _,room in enumerate(rooms.values()): 
+		for key,room in enumerate(rooms.values()): 
+			
 			if room.GetIsSuit():
 				cnt += 1
 		cnt /= 2
 		print "There are %d suits" % cnt
 	if data.data == '3':
-		print room_util.getProbabilityOfBeingOccupied(G, rooms)
+		print room_util.getProbabilityOfFindingPerson(G, rooms)
 	if data.data == '4':
-		print room_util.getProbabilityComputer(rooms)
+		print room_util.getProbabilityComputer(G, rooms)
 	if data.data == '5':
 		print graph_util.closestRoom(G, rooms, room_util.getNomenclature(x_ant, y_ant))
 	if data.data == '6':
@@ -109,6 +112,9 @@ def callback2(data):
 			print "It's estimated that %d book will be found in the next 2 minutes." % estimation
 		else:
 			print "It's estimated that %d books will be found in the next 2 minutes." % estimation
+
+	if data.data == '9':
+		print room_util.getProbabilityOfBeingOccupied(G, rooms)
 
 # ---------------------------------------------------------------
 def agent():

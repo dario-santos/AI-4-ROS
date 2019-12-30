@@ -45,6 +45,26 @@ def isHall(roomNumber=-1, roomName=''):
 
     raise Exception("Invalid params")
 
+def getProbabilityOfFindingPerson(G, rooms):
+    numberOfPeople = 0
+    numberOfPeopleInRoom = 0.0
+    prob = 0
+    
+    for i in G:
+        numberOfPeople += len(rooms[i].GetObjectsByCategory(RoomObject.Category.person))
+        if not isHall(i):
+            numberOfPeopleInRoom += len(rooms[i].GetObjectsByCategory(RoomObject.Category.person))
+
+    if numberOfPeople == 0:
+        return "There\'s no known people."
+
+    prob = (numberOfPeopleInRoom * 100)/numberOfPeople
+
+    if prob > (1 - prob):
+        return "There\'s a bigger probability of finding a person in a room."
+    
+    return "There\'s a bigger probability of finding a person in a hall."
+
 def getProbabilityOfBeingOccupied(G,rooms):
     personsOnHalls = 0
     personsOnRooms = 0
@@ -72,19 +92,18 @@ def getProbabilityOfBeingOccupied(G,rooms):
 	    probOfRooms = (personsOnRooms / nOfRooms) * 100
 
     if probOfHalls == probOfRooms:
-	    return "The probability of finding a person is the same (%.0f%%)" % probOfHalls
+	    return "The probability of being occuped is the same (%.0f%%)" % probOfHalls
     elif probOfHalls > probOfRooms:
-	    return "There\'s a bigger probability of finding a person in a hall (%.0f%%)" % probOfHalls
-    return "There\'s a bigger probability of finding a person in a room (%.0f%%)" % probOfRooms
+	    return "There\'s a bigger probability a hall be occupied (%.0f%%)" % probOfHalls
+    return "There\'s a bigger probability a room be occupied (%.0f%%)" % probOfRooms
 
 def getProbabilityComputer(G, rooms):
     count_rooms = [0] * Room.RoomType.size
     count_pc_rooms = [0.0] * Room.RoomType.size
     prob_rooms = [0.0] * Room.RoomType.size
 
-    for key, room in enumerate(rooms.values()):
-        if key is not in G:
-            continue
+    for i in G:
+        room = rooms[i]
 
         t = room.GetRoomType()
         if t is not Room.RoomType.none:
