@@ -117,12 +117,12 @@ def getProbabilityComputer(G, rooms):
 
     p = max(prob_rooms)
     if p == 0.0:
-        return (Room.RoomType.GetName(0), 0)
+        return "There are no known computers"
 
     index = prob_rooms.index(p) + 1
 
-    return (Room.RoomType.GetName(index), p)
-
+    return "You go to the room type %s" % Room.RoomType.GetName(index)
+    
 def getNumberOfBooks(rooms):
     cnt = 0
     for _, room in enumerate(rooms.values()):

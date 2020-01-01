@@ -3,14 +3,14 @@ import RoomObject
 class Room:
     
     def __init__(self, objects):
-        self.isSuit = False
+        self.connectedTo = ""
         self.objects = objects
 
-    def SetIsSuit(self, value):
-        self.isSuit = value
+    def SetConnectedTo(self, value):
+        self.connectedTo = value
     
-    def GetIsSuit(self):
-        return self.isSuit
+    def GetConnectedTo(self):
+        return self.connectedTo
     
     def AddObject(self, name):
         info = name.split("_", 1)
@@ -55,9 +55,11 @@ class Room:
         nOfTables = len(self.GetObjectsByCategory(RoomObject.Category.table))
         nOfChairs = len(self.GetObjectsByCategory(RoomObject.Category.chair))
 
-        if nOfBeds == 1:
+
+
+        if nOfBeds == 1 and self.connectedTo == "":
             return RoomType.single
-        elif nOfBeds > 1 and self.isSuit:
+        elif nOfBeds > 0 and self.connectedTo != "":
             return RoomType.suite
         elif nOfBeds == 2:
             return RoomType.double

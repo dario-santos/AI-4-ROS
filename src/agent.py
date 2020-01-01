@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # encoding: utf8
 # Artificial Intelligence, UBI 2019-20
-# Modified by: Students names and numbers
+# Modified by: 34218 Paulo Silva, 39973 Dário Santos
 
 import rospy
 from std_msgs.msg import String
@@ -39,16 +39,10 @@ def callback(data):
 
 			# Memória
 			if not room_util.isHall(roomName=room_ant) and not room_util.isHall(roomName=room_current):
-				rooms[room_ant].SetIsSuit(True)
-				rooms[room_current].SetIsSuit(True)
+				rooms[room_ant].SetConnectedTo(room_current)
+				rooms[room_current].SetConnectedTo(room_ant)
 			
 			room_ant = room_current
-
-			
-	# show coordinates only when they change
-	if x != x_ant or y != y_ant:
-		print " x=%.1f y=%.1f" % (x,y)
-		print room_ant
 
 	x_ant = x
 	y_ant = y
@@ -69,9 +63,6 @@ def callback1(data):
 			print "object is %s" % o
 		
 		rooms[room_ant] = current_room
-
-		# Debug print
-		print "object is %s" % data.data
 		
 	obj_ant = obj
 		
@@ -89,13 +80,15 @@ def callback2(data):
 
 		print "There are %d rooms occupied" % cnt
 	if data.data == '2':
-		cnt = 0
-		for key,room in enumerate(rooms.values()): 
-			
-			if room.GetIsSuit():
-				cnt += 1
-		cnt /= 2
-		print "There are %d suits" % cnt
+		l = []
+		for i in G:
+			if rooms[i].GetRoomType() == Room.RoomType.suite:
+				print i
+				if rooms[i].GetConnectedTo() not in l:
+					l.append(i)
+					
+		print "There are %d suits" % len(l)
+
 	if data.data == '3':
 		print room_util.getProbabilityOfFindingPerson(G, rooms)
 	if data.data == '4':
