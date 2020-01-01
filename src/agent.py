@@ -60,7 +60,6 @@ def callback1(data):
 		objects= data.data.split(',')
 		for _,o in enumerate(objects):
 			current_room.AddObject(o)
-			print "object is %s" % o
 		
 		rooms[room_ant] = current_room
 		
@@ -74,7 +73,6 @@ def callback2(data):
 	if data.data == '1':
 		cnt = 0
 		for key, room in enumerate(rooms.values()):
-			
 			if room.IsOccupied():
 				cnt += 1
 
@@ -83,7 +81,6 @@ def callback2(data):
 		l = []
 		for i in G:
 			if rooms[i].GetRoomType() == Room.RoomType.suite:
-				print i
 				if rooms[i].GetConnectedTo() not in l:
 					l.append(i)
 					
