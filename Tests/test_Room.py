@@ -40,13 +40,6 @@ def test_roomIsDouble():
     r1.AddObject("bed_bed2")
     assert r1.GetRoomType() == r.RoomType.double
 
-def test_roomIsSuite():
-    r1 = r.Room([])
-    r1.SetIsSuit(True)
-    r1.AddObject("bed_bed1")
-    r1.AddObject("bed_bed2")
-    assert r1.GetRoomType() == r.RoomType.suite
-
 def test_roomIsMeeting():
     r1 = r.Room([])
     r1.AddObject("table_table1")
