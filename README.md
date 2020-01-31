@@ -3,23 +3,29 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/dario-santos/ia-4-ros/badge/master?s=cf0b1797d627d89d1a6750b2b278fb9d7477cd16)](https://www.codefactor.io/repository/github/dario-santos/ia-4-ros/overview/master)
 
 # IA-4-ROS
-IA for ROS é um trabalho desenvolvido para a Unidade Curricular Inteligência Artificial na Universidade da Beira Interior.
+This project was developed for the Artificial Intelligence course of the Computer Engineering course at the University of Beira Interior.
 
 ## How to install
 
-Substituir o diretório /home/viki/catkin_ws/src/ia/src pelo /src presente neste repositório.
+Place the /src content in the directory /home/viki/catkin_ws/src/ia/src.
 
 
-## Dependências
+## Dependncies
+
+The correct functioning of this program depends of the libraries:
+
+- networkx 2.2
+
+All the libraries listed above can be installed by a unique command:
 
 ```python
 > pip install -r requirements.txt
 ```
 
-## Testes
+## Unit Tests
 
-Existe um conjunto de testes que podem ser consultados no diretório Tests. 
-Pode executálos com o comando 
+There is a set of unit tests that can be accessed in the directory Tests.
+They use the pytest library.
 
 ```python
 > pytest
